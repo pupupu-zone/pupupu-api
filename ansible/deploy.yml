@@ -2,7 +2,7 @@
 - hosts: production
   gather_facts: true
   vars:
-    backend_env_path: /home/lina/subsawwy.com/backend.env
+    backend_env_path: /home/lina/subsawwy.com/backend.env # @TODO: Replace with real env-management
 
   tasks:
     - name: Check if env file exist
@@ -30,9 +30,9 @@
         password: "{{ docker_password }}"
         reauthorize: true
 
-    - name: Deploy backend (SS-API)
+    - name: Deploy backend (PUPUPU-API)
       community.docker.docker_container:
-        name: SS-API
+        name: PUPUPU-API
         image: registry.keireira.com/subsawwy-backend:latest
         state: started
         restart_policy: always
