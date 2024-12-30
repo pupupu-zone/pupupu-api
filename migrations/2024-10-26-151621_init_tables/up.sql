@@ -78,7 +78,6 @@ CREATE TABLE "categories" (
   "name" TEXT NOT NULL,
   "emoji" VARCHAR(8) NULL,
   "color" VARCHAR(7) NOT NULL DEFAULT '#000000',
-  "is_default" BOOLEAN NOT NULL DEFAULT false,
 
   PRIMARY KEY ("id"),
   FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE,
@@ -99,13 +98,9 @@ CREATE TABLE "applications" (
   "user_id" UUID NOT NULL,
   "category_id" UUID NOT NULL DEFAULT 'ff3671b4-8924-40bc-a910-507d92fa2e88', -- 'Other' category
   "name" TEXT NOT NULL,
-  "emoji" VARCHAR(8) NULL,
   "logo_url" TEXT NULL,
   "color" VARCHAR(7) NOT NULL DEFAULT '#000000',
   "aliases" TEXT[] NOT NULL DEFAULT '{}'::TEXT[],
-  "links" JSONB NOT NULL DEFAULT '{}',
-  "is_default" BOOLEAN NOT NULL DEFAULT false,
-  "is_archived" BOOLEAN NOT NULL DEFAULT false, -- the app exists no more
 
   PRIMARY KEY ("id"),
   FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE,
@@ -129,8 +124,6 @@ CREATE TABLE "payment_methods" (
   "comment" TEXT NULL,
   "color" VARCHAR(7) NOT NULL DEFAULT '#000000',
   "emoji" VARCHAR(8) NULL,
-  "is_default" BOOLEAN NOT NULL DEFAULT false,
-  "is_archived" BOOLEAN NOT NULL DEFAULT false,
 
   PRIMARY KEY ("id"),
   FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE,
@@ -140,8 +133,6 @@ CREATE TABLE "payment_methods" (
 );
 
 CREATE INDEX IF NOT EXISTS "payment_methods_user_id_index" ON "payment_methods"("user_id");
-CREATE INDEX IF NOT EXISTS "payment_methods_is_default_index" ON "payment_methods"("is_default");
-CREATE INDEX IF NOT EXISTS "payment_methods_is_archived_index" ON "payment_methods"("is_archived");
 
 --
 -- SUBSCRIPTIONS

@@ -31,8 +31,6 @@ diesel::table! {
         color -> Varchar,
         aliases -> Array<Nullable<Text>>,
         links -> Jsonb,
-        is_default -> Bool,
-        is_archived -> Bool,
     }
 }
 
@@ -45,7 +43,6 @@ diesel::table! {
         emoji -> Nullable<Varchar>,
         #[max_length = 7]
         color -> Varchar,
-        is_default -> Bool,
     }
 }
 
@@ -59,8 +56,6 @@ diesel::table! {
         color -> Varchar,
         #[max_length = 8]
         emoji -> Nullable<Varchar>,
-        is_default -> Bool,
-        is_archived -> Bool,
     }
 }
 

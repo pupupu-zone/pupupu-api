@@ -11,7 +11,7 @@
       register: env_files
       with_items:
         - "{{ backend_env_path }}"
-      
+
     - name: Fail if env file don't exist
       fail:
         msg: "Required .env file not found. Please ensure {{ backend_env_path }} exists."
@@ -30,9 +30,9 @@
         password: "{{ docker_password }}"
         reauthorize: true
 
-    - name: Deploy backend (PUPUPU-API)
+    - name: Deploy backend (UHA-API)
       community.docker.docker_container:
-        name: PUPUPU-API
+        name: UHA-API
         image: registry.keireira.com/subsawwy-backend:latest
         state: started
         restart_policy: always

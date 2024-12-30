@@ -42,13 +42,11 @@ impl AppsQuery {
                 color,
                 aliases,
                 links,
-                is_default,
-                is_archived
+                is_default
             FROM
                 applications
             WHERE
                 (user_id = $1 OR is_default = TRUE)
-                AND is_archived = FALSE
             "#,
         );
 

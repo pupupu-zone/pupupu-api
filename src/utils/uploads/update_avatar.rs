@@ -10,11 +10,13 @@ use crate::service::env::EnvConfig;
 use crate::utils::uploads;
 
 fn is_allowed_file(content_type: &Mime) -> bool {
-    let allowed_mime_types = vec![mime::IMAGE_JPEG, mime::IMAGE_PNG];
+    let allowed_mime_types = vec![mime::IMAGE];
 
-    allowed_mime_types.contains(content_type)
+    allowed_mime_types.contains(&content_type.type_())
 }
 
+// @TODO: We use webp only, so be it
+// @TODO: I want to be able to delete avatar by sending empty value for avatar key
 pub async fn update_avatar(
     user: &actix_multipart::form::MultipartForm<UserForm>,
     dp: &web::Data<WebDataPool>,

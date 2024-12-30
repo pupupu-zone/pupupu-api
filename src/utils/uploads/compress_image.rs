@@ -16,7 +16,7 @@ pub async fn compress_image(
     } else if *content_type == mime::IMAGE_PNG {
         ImageFormat::Png
     } else {
-        return Vec::new();
+        ImageFormat::WebP
     };
 
     let img = image::load_from_memory_with_format(image_data, format).expect("Invalid image data");

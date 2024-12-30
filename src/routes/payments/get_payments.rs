@@ -51,8 +51,7 @@ impl PaymentMethodsQuery {
                 color,
                 comment,
                 emoji,
-                is_default,
-                is_archived
+                is_default
             FROM"#,
         );
 
@@ -62,7 +61,6 @@ impl PaymentMethodsQuery {
                 r#" (
                 SELECT * FROM payment_methods
                 WHERE (user_id = $1 OR is_default = TRUE)
-                AND is_archived = FALSE
                 ORDER BY RANDOM()
                 LIMIT $2
             ) subquery"#,
@@ -71,7 +69,7 @@ impl PaymentMethodsQuery {
             query.push_str(
                 r#" payment_methods
             WHERE (user_id = $1 OR is_default = TRUE)
-            AND is_archived = FALSE"#,
+            "#,
             );
         }
 
